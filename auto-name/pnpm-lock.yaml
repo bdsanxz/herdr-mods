@@ -1,0 +1,23 @@
+lockfileVersion: '9.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+importers:
+
+  .:
+    dependencies:
+      '@xzy-ai/robo-faker':
+        specifier: file:vendor/xzy-ai-robo-faker-0.1.0.tgz
+        version: file:vendor/xzy-ai-robo-faker-0.1.0.tgz
+
+packages:
+
+  '@xzy-ai/robo-faker@file:vendor/xzy-ai-robo-faker-0.1.0.tgz':
+    resolution: {integrity: sha512-rG1Iicn3/dpy9pWbJbDC6rYiqPPFncxkwbTN3u4V25gOpqexwcfdJ0fJML+ednyY/QTw++Zm3ldFEWhA60XjIg==, tarball: file:vendor/xzy-ai-robo-faker-0.1.0.tgz}
+    version: 0.1.0
+
+snapshots:
+
+  '@xzy-ai/robo-faker@file:vendor/xzy-ai-robo-faker-0.1.0.tgz': {}

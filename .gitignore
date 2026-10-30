@@ -1,0 +1,13 @@
+# Only the mods written for this repo are tracked; Herdr's bundled mods and
+# the gpui-kit type files belong to their authors and stay out.
+/*
+!/.gitignore
+!/LICENSE
+!/README.md
+!/auto-name/
+!/titlebar-git/
+node_modules/
+.DS_Store
+auto-name/gpui-kit.d.ts
+titlebar-git/gpui-kit.d.ts
+*/jsconfig.json
