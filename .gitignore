@@ -6,8 +6,10 @@
 !/README.md
 !/auto-name/
 !/titlebar-git/
+!/workspaces/
 node_modules/
 .DS_Store
 auto-name/gpui-kit.d.ts
 titlebar-git/gpui-kit.d.ts
+workspaces/gpui-kit.d.ts
 */jsconfig.json
