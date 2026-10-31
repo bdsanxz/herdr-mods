@@ -21,10 +21,11 @@ Copy `qoder/herdr-status.sh` to `~/.qoder/hooks/` (`chmod +x`) and add to `~/.qo
 "hooks": {
   "SessionStart":     [{"hooks":[{"type":"command","command":"~/.qoder/hooks/herdr-status.sh idle"}]}],
   "UserPromptSubmit": [{"hooks":[{"type":"command","command":"~/.qoder/hooks/herdr-status.sh working"}]}],
+  "PostToolUse":      [{"hooks":[{"type":"command","command":"~/.qoder/hooks/herdr-status.sh working"}]}],
   "Notification":     [{"hooks":[{"type":"command","command":"~/.qoder/hooks/herdr-status.sh blocked"}]}],
   "Stop":             [{"hooks":[{"type":"command","command":"~/.qoder/hooks/herdr-status.sh done"}]}],
   "SessionEnd":       [{"hooks":[{"type":"command","command":"~/.qoder/hooks/herdr-status.sh idle"}]}]
 }
 ```
 
-Restart running agents afterwards. The `blocked` paths are untested.
+Restart running agents afterwards.

@@ -3,7 +3,7 @@ import { Plugin } from "@opencode/plugin/tui"
 import { openSync, writeSync, closeSync } from "node:fs"
 
 const running = new Set() // sessions mid-run (sub-agent sessions count too)
-const asking = new Set()  // permission requests waiting on the user
+const asking = new Set()  // permission requests and questions (forms) waiting on the user
 let last
 
 function report(state) {
@@ -31,6 +31,8 @@ export default Plugin.define({
         settle(type.endsWith(".succeeded") ? "done" : type.endsWith(".failed") ? "error" : "idle")
       }
       else if (type === "permission.asked") { asking.add(data?.id); settle("idle") }
+      else if (type === "form.created") { asking.add(data?.form?.id); settle("idle") }
+      else if (type.startsWith("form.")) { const f = data?.form?.id ?? data?.formID ?? data?.id; f ? asking.delete(f) : asking.clear(); settle("idle") }
       else if (type === "permission.replied") { data?.id ? asking.delete(data.id) : asking.clear(); settle("idle") }
     })
     return () => { stop(); report("idle") }
