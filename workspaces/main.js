@@ -116,7 +116,7 @@ export default class Workspaces extends View {
       .when(!hasAgents, (el) => el.child(div().size(18).flex_none()));
   }
 
-  agentRow(a, t, name) {
+  agentRow(a, t, name, space) {
     const idle = a.status === "idle" && !a.focused;
     const machine = a.address.includes("/") ? a.address.split("/")[0] : null;
     const pic = icon(a.program, 15, idle ? t.muted : t.foreground);
@@ -124,6 +124,7 @@ export default class Workspaces extends View {
       .when(a.focused, (el) => el.bg(t.selected))
       .cursor_pointer().hover((x) => x.bg(t.hover))
       .on_click(() => run("pane.focus", { pane: a.pane }))
+      .on_mouse_down("right", () => openOverlay({ mod: "menu", kind: "popup", width: 200, props: { tab: "tab", target: { id: a.tab, space: space.id } } }))
       .child(div().w(18).flex_none().flex().items_center().justify_center().child(pic ?? div().size(14).flex_none()))
       .child(div().flex_1().min_w(0).truncate().text_size(12.5).text_color(idle ? t.muted : t.foreground).child(name))
       .when(Boolean(machine), (el) => el.child(div().text_size(10).text_color(t.dim).child(machine)))
@@ -184,7 +185,7 @@ export default class Workspaces extends View {
       const group = [this.spaceRow(s, i, t, fill, collapsed, mine.length > 0 || subs.length > 0)];
       if (!collapsed && !this.folded.has(s.id)) {
         for (const a of mine) {
-          group.push(this.agentRow(a, t, this.agentName(a, tabs)));
+          group.push(this.agentRow(a, t, this.agentName(a, tabs), s));
           for (const sub of this.tree(all, a.address)) group.push(this.subRow(sub.t, t, kidStatus(sub.t, listed)));
         }
       }
